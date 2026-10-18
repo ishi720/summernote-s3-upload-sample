@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36">
+  <diagram name="ページ1" id="dppB6Rvdvt4KNGuMI2UY">
+    <mxGraphModel dx="1081" dy="861" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#333333;" value="" vertex="1">
+          <mxGeometry height="280" width="300" x="370" y="262" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#333333;align=left;spacingLeft=8;fontSize=14;" value="ブラウザ" vertex="1">
+          <mxGeometry height="30" width="140" x="370" y="262" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-3" parent="1" style="swimlane;fontStyle=0;startSize=34;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;fontSize=14;" value="WYSIWYGエディタ" vertex="1">
+          <mxGeometry height="170" width="220" x="410" y="332" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-4" parent="NjUx5B25fPT0Nv7lhIKw-3" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;" value="Summernote&lt;br&gt;&lt;br&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;⑤ 公開URLの&amp;lt;img&amp;gt;を挿入&lt;/font&gt;" vertex="1">
+          <mxGeometry height="136" width="220" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#333333;" value="" vertex="1">
+          <mxGeometry height="280" width="300" x="890" y="262" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#333333;align=left;spacingLeft=8;fontSize=14;" value="localhost:3000" vertex="1">
+          <mxGeometry height="30" width="140" x="890" y="262" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-7" parent="1" style="swimlane;fontStyle=0;startSize=34;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;swimlaneFillColor=#ffffff;fontSize=14;" value="Express" vertex="1">
+          <mxGeometry height="170" width="220" x="930" y="332" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-8" parent="NjUx5B25fPT0Nv7lhIKw-7" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;" value="【機能】&lt;br&gt;・署名付きURLの発行&lt;br&gt;・画像の削除" vertex="1">
+          <mxGeometry height="136" width="220" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#333333;" value="" vertex="1">
+          <mxGeometry height="280" width="300" x="370" y="662" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#eeeeee;strokeColor=#333333;align=left;spacingLeft=8;fontSize=14;" value="AWS" vertex="1">
+          <mxGeometry height="30" width="140" x="370" y="662" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-11" parent="1" style="swimlane;fontStyle=0;startSize=34;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;fontSize=14;" value="S3" vertex="1">
+          <mxGeometry height="170" width="220" x="410" y="732" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-12" parent="NjUx5B25fPT0Nv7lhIKw-11" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;" value="バケット" vertex="1">
+          <mxGeometry height="136" width="220" y="34" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-13" edge="1" parent="1" source="NjUx5B25fPT0Nv7lhIKw-3" style="endArrow=classic;html=1;rounded=0;fontSize=13;labelBackgroundColor=#ffffff;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" target="NjUx5B25fPT0Nv7lhIKw-7" value="② 署名付きURLを依頼">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-14" edge="1" parent="1" source="NjUx5B25fPT0Nv7lhIKw-7" style="endArrow=classic;html=1;rounded=0;fontSize=13;labelBackgroundColor=#ffffff;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;" target="NjUx5B25fPT0Nv7lhIKw-3" value="③ 署名付きURLを返す">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-15" edge="1" parent="1" source="NjUx5B25fPT0Nv7lhIKw-3" style="endArrow=classic;html=1;rounded=0;fontSize=13;labelBackgroundColor=#ffffff;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NjUx5B25fPT0Nv7lhIKw-11" value="④ 署名付きURLに&lt;br&gt;画像をPUT">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-16" edge="1" parent="1" source="NjUx5B25fPT0Nv7lhIKw-7" style="endArrow=classic;html=1;rounded=0;fontSize=13;labelBackgroundColor=#ffffff;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="NjUx5B25fPT0Nv7lhIKw-11" value="画像の削除">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-17" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=14;" value="ユーザー" vertex="1">
+          <mxGeometry height="70" width="40" x="230" y="387" as="geometry" />
+        </mxCell>
+        <mxCell id="NjUx5B25fPT0Nv7lhIKw-18" edge="1" parent="1" source="NjUx5B25fPT0Nv7lhIKw-17" style="endArrow=classic;html=1;rounded=0;fontSize=13;labelBackgroundColor=#ffffff;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NjUx5B25fPT0Nv7lhIKw-3" value="① 画像を挿入">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
