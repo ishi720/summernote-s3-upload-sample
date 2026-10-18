@@ -7,7 +7,7 @@ Summernote に挿入した画像を、署名付きURL（Presigned URL）でブ�
 ```
 summernote-s3-upload-sample/
 ├── server.js
-├── public/i
+├── public/
 │    ├── index.html
 │    ├── app.js
 │    └── style.css
