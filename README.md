@@ -5,9 +5,12 @@ Summernote に挿入した画像を、署名付きURL（Presigned URL）でブ�
 ## 構成
 
 ```
-/
+summernote-s3-upload-sample/
 ├── server.js
-├── public/index.html
+├── public/i
+│    ├── index.html
+│    ├── app.js
+│    └── style.css
 ├── package.json
 └── .env.example
 ```
@@ -20,6 +23,15 @@ Summernote に挿入した画像を、署名付きURL（Presigned URL）でブ�
 
 ```bash
 cp .env.example .env
+```
+
+```
+AWS_REGION=
+S3_BUCKET=
+PUBLIC_BASE_URL=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+PORT=
 ```
 
 4. npmパッケージのインストール
