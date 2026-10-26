@@ -1,0 +1,82 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Summernote S3 upload sample - S3 bucket and IAM user
+
+Parameters:
+  BucketName:
+    Type: String
+    Default: ""
+    Description: S3バケット名（空の場合は自動生成）
+  AllowedOrigin:
+    Type: String
+    Default: http://localhost:3000
+    Description: ブラウザから直接PUTを許可するオリジン（CORS）
+
+Conditions:
+  HasBucketName: !Not [!Equals [!Ref BucketName, ""]]
+
+Resources:
+  UploadBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !If [HasBucketName, !Ref BucketName, !Ref AWS::NoValue]
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      # ACLによる公開は禁止し、バケットポリシーでの公開のみ許可
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: false
+        RestrictPublicBuckets: false
+      CorsConfiguration:
+        CorsRules:
+          - AllowedOrigins:
+              - !Ref AllowedOrigin
+            AllowedMethods:
+              - PUT
+            AllowedHeaders:
+              - "*"
+            MaxAge: 3000
+
+  # uploads/ 配下を公開読み取り可能にする（PUBLIC_BASE_URL で画像を表示するため）
+  UploadBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref UploadBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: PublicReadUploads
+            Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource: !Sub "${UploadBucket.Arn}/uploads/*"
+
+  # server.js が署名付きURLの発行と削除に使うユーザー
+  AppUser:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+        - PolicyName: summernote-s3-upload
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:DeleteObject
+                Resource: !Sub "${UploadBucket.Arn}/uploads/*"
+
+Outputs:
+  Region:
+    Description: AWS_REGION
+    Value: !Ref AWS::Region
+  BucketName:
+    Description: S3_BUCKET
+    Value: !Ref UploadBucket
+  PublicBaseUrl:
+    Description: PUBLIC_BASE_URL
+    Value: !Sub "https://${UploadBucket.RegionalDomainName}"
+  UserName:
+    Description: アクセスキーを発行するIAMユーザー名
+    Value: !Ref AppUser

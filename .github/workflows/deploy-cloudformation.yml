@@ -1,0 +1,64 @@
+name: Deploy CloudFormation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - cloudformation/**
+      - .github/workflows/deploy-cloudformation.yml
+  workflow_dispatch:
+
+permissions:
+  id-token: write # OIDCでAWSのロールを引き受けるため
+  contents: read
+
+concurrency:
+  group: deploy-cloudformation
+  cancel-in-progress: false
+
+env:
+  STACK_NAME: ${{ vars.STACK_NAME || 'summernote-s3-upload-sample' }}
+  AWS_REGION: ${{ vars.AWS_REGION || 'ap-northeast-1' }}
+  S3_BUCKET: ${{ vars.S3_BUCKET }}
+  ALLOWED_ORIGIN: ${{ vars.ALLOWED_ORIGIN }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Validate template
+        run: aws cloudformation validate-template --template-body file://cloudformation/template.yaml
+
+      - name: Deploy stack
+        run: |
+          # 未設定の変数は渡さず、テンプレートのデフォルト値を使う
+          params=()
+          [ -n "$S3_BUCKET" ] && params+=("BucketName=$S3_BUCKET")
+          [ -n "$ALLOWED_ORIGIN" ] && params+=("AllowedOrigin=$ALLOWED_ORIGIN")
+
+          aws cloudformation deploy \
+            --template-file cloudformation/template.yaml \
+            --stack-name "$STACK_NAME" \
+            --capabilities CAPABILITY_IAM \
+            --no-fail-on-empty-changeset \
+            ${params:+--parameter-overrides "${params[@]}"}
+
+      - name: Show outputs
+        run: |
+          {
+            echo "## Stack outputs"
+            echo
+            echo "| Key | Value |"
+            echo "| --- | --- |"
+            aws cloudformation describe-stacks \
+              --stack-name "$STACK_NAME" \
+              --query "Stacks[0].Outputs[].[OutputKey,OutputValue]" \
+              --output text | awk -F'\t' '{ printf "| %s | %s |\n", $1, $2 }'
+          } >> "$GITHUB_STEP_SUMMARY"
